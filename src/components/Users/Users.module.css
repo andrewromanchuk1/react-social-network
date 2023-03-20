@@ -1,0 +1,34 @@
+.users__container {
+   position: relative;
+   overflow: hidden;
+}
+.users__pages {
+   position: absolute;
+}
+.current {
+   margin: 0 2px;
+   cursor: pointer;
+   border: solid 2px yellow;
+   border-radius: 45%;
+}
+.notCurrent {
+   margin: 0 2px;
+   cursor: pointer;
+}
+.users__img {
+   width: 100px;
+   border-radius: 50%;
+}
+.users__item_container {
+   padding: 30px 20px;
+}
+.preloader {
+   width: 100px;
+}
+.pages__btn {
+   font-size: 25px;
+   background-color: transparent;
+   color: #fff;
+   border: none;
+   cursor: pointer;
+}

@@ -1,0 +1,42 @@
+.dialoges {
+   display: grid;
+   grid-template-columns: 1fr 4fr;
+}
+.dialoges_list__title  {
+   margin: 0;
+   color: yellow;
+}
+.dialoges_list {
+   padding: 20px;
+}
+.dialoges_messages {
+   padding: 20px;
+   background-color: darksalmon;
+}
+.dialoges_list__item {
+   display: flex;
+   text-decoration: none;
+   color: rgb(180, 255, 202);
+   font-weight: 600;
+   font-size: 18px;
+   margin: 5px 0;
+   align-items: center;
+}
+.dialoges_list__item_active {
+   color: gold;
+   text-decoration: none;
+   font-weight: 600;
+   font-size: 18px;
+   margin: 5px 0;
+   display: flex;
+   align-items: center;
+}
+.dialoges_list__img {
+   height: 50px;
+}
+.dialoges_list__name {
+   padding: 0 0 0 5px;
+}
+.message_btn {
+   display: block;
+}

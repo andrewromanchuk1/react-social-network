@@ -1,0 +1,9 @@
+.post__item {
+   color: blueviolet;
+   font-weight: 700;
+   padding: 20px;
+}
+textarea {
+   background-color: mediumslateblue;
+   margin: 0;
+}

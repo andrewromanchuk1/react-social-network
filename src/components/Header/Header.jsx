@@ -13,7 +13,7 @@ const Header= (props) => {
                <span className={styles.header__login}>{props.login}</span>
                <button onClick={props.toLogoutThunkCreator} className={styles.header__logout}>Log out</button>
             </div> :
-            <a className={styles.header__login} href='/login'>Login</a>}
+            <a className={styles.header__login} href='login#/login'>Login</a>}
          </div>
          
       </header>

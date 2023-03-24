@@ -1,11 +1,10 @@
 import './App.css';
-import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer'
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
 import LoginContainer from './components/Login/LoginContainer';
 import React, { Suspense } from 'react';
@@ -13,9 +12,9 @@ import { connect } from 'react-redux';
 import {initializeApp} from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import store from './redux/redux-store';
-import { BrowserRouter } from 'react-router-dom';
 import {Provider}  from 'react-redux';
 
+let ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer')) ;
 let DialogesContainer = React.lazy(() => import('./components/Dialoges/DialogesContainer'))
 
 class App extends React.Component {
@@ -33,6 +32,7 @@ class App extends React.Component {
           <NavbarContainer/>
           <div className='app-wrapper__content'>
             <Routes>
+              <Route exact path='/*' element={<ProfileContainer/>}/>
               <Route path='/profile/:userID?' element={<ProfileContainer/>}/>
               <Route path='/dialoges/*' element={<DialogesContainer/>}/>           
               <Route path='/news/*' element={<News/>}/>

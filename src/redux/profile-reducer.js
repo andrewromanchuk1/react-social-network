@@ -1,8 +1,10 @@
 import {profileAPI} from "../api/api";
+import { stopSubmit } from "redux-form";
 
 const ADD_POST = 'ADD-POST';
 const ADD_PROFILE_PAGE = 'ADD-PROFILE-PAGE';
 const SET_STATUS = 'SET_STATUS';
+const SET_IMAGE = 'SET_IMAGE';
 
 const initialProfile = {
    postsData: [
@@ -37,6 +39,11 @@ const profileReducer = (state = initialProfile, action) => {
          ...state,
          status: action.status,
       }
+      case SET_IMAGE:
+         return {
+            ...state,
+            profile: {...state.profile, photos: action.image}
+         }
       default:
          return state;
    }
@@ -45,18 +52,15 @@ const profileReducer = (state = initialProfile, action) => {
 export const addPostActionCreator = (value) => ({type: ADD_POST, value});
 export const toSetProfilePage = (profile) => ({type: ADD_PROFILE_PAGE, profile});
 export const toSetStatus = (status) => ({type: SET_STATUS, status});
+export const toSetImage = (image) => ({type: SET_IMAGE, image});
 
-export const profileThunkCreator = (userId) => {
-   return (dispatch) => {
-      profileAPI.getProfile(userId)
-      .then(data => {
-         if(data) {
-            dispatch(toSetProfilePage(data))
-         }
-      })
-         
-   }
+export const profileThunkCreator = (userId) => async (dispatch) =>{   
+   const data = await profileAPI.getProfile(userId)
+   if(data) {
+      dispatch(toSetProfilePage(data))
+   }        
 }
+
 export const getStatusThunkCreator = (userId) => {
    return async (dispatch) => {
       let data = await profileAPI.getStatus(userId);
@@ -67,9 +71,33 @@ export const updateStatusThunkCreator = (status) => {
    return async (dispatch) => {
       let data = await profileAPI.setStatus(status);
       if(data.resultCode === 0) {
-         {dispatch(toSetStatus(status))}
+         dispatch(toSetStatus(status))
       }     
    }
 }
+export const addImageThunkCreator = (image) => {
+   return async (dispatch) => {
+      let data = await profileAPI.setImage(image);
+      if(data.resultCode === 0) {
+         dispatch(toSetImage(data.data.photos));
+      }
+   }
+}
+
+export const saveProfileThunkCreator = (profile) => async (dispatch, getState) => {
+   const userId = getState().auth.id;
+   const data = await profileAPI.setProfile(profile);
+   if(data.resultCode === 0) {
+      const data = await profileAPI.getProfile(userId)
+      if(data) {
+         dispatch(toSetProfilePage(data))
+      }              
+   } else {
+      let message = data.messages.length > 0 ? data.messages[0] : 'Some error';
+      dispatch(stopSubmit('setProfile', {_error: message}));
+      return Promise.reject(message);
+   }
+}
+
 
 export default profileReducer; 

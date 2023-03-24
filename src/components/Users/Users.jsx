@@ -40,9 +40,11 @@ const Users = (props) => {
                   </div>
                   <div>
                      {u.followed ?
-                     <button disabled={props.isFollowingProgress.some(id=> id === u.id)}
+                     <button className={style.users__item_btn}
+                     disabled={props.isFollowingProgress.some(id=> id === u.id)}
                      onClick = { () => {props.unfollowThunkCreator(u.id)}}>Unsubscribe</button> :
-                     <button disabled={props.isFollowingProgress.some(id=> id === u.id)}
+                     <button className={style.users__item_btn}
+                     disabled={props.isFollowingProgress.some(id=> id === u.id)}
                      onClick={ () => {props.followThunkCreator(u.id)}}>Subscribe</button>}
                   </div>
                </span>

@@ -4,6 +4,16 @@
    padding: 20px;
 }
 textarea {
-   background-color: mediumslateblue;
+   background-color: rgb(255, 255, 255);
    margin: 0;
+}
+.posts__btn {
+   background-color: transparent;
+   font-size: 15px;
+   color: #fff;
+   padding: 2px 10px;
+   border:  3px solid rgba(43, 34, 170, 0.74);
+   background-color: blueviolet;
+   border-radius: 20px;
+   cursor: pointer;
 }

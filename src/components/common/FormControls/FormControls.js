@@ -17,8 +17,7 @@ export const Input = ({input, meta, ...props}) => {
       <div className={styles.form_container}>
          <input className={!error ? styles.form_area : styles.form_area + ' ' + styles.form_area__error} 
          {...input} {...props}/>
-         {error ? <p className={styles.form_error}>{meta.error}</p> : undefined}
-         
+         {error ? <p className={styles.form_error}>{meta.error}</p> : undefined}         
       </div>
    )
 }

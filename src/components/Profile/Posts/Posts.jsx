@@ -19,19 +19,18 @@ const Posts = React.memo(props => {
                <Field component={Textarea} name={'postText'} validate={[requiredField, maxLength(15)]}/>
             </div>
             <div>
-               <button>Add post</button>
+               <button className={postsCss.posts__btn}>Add post</button>
             </div>
       </form>
       )
    }
-   const AddPostReduxForm = reduxForm({form: 'addPostForm'})(AddPostForm);
+   const AddPostReduxForm = reduxForm({form: 'editProfile'})(AddPostForm);
    
    return (
       <div className={postsCss.post__item}>
          <AddPostReduxForm onSubmit={addPost}/>
-         <p>My post</p>
+         <p>My posts</p>
          <div className={postsCss.post__new_item}>
-            New post
          </div>
          <div>
             {Post}

@@ -3,7 +3,7 @@
 }
 .form_area {
    margin: 0;
-
+   background-color: ;
 }
 .form_area__error {
    border: 1px solid red;
@@ -23,4 +23,11 @@
    border: 1px solid #ff0000;
    border-radius: 15px;
    background-color: #ff0000;
+}
+.login__container {
+   padding: 15px;
+}
+.login__captcha_img {
+   padding: 20px 0 10px 0;
+   width: 200px;
 }

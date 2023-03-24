@@ -29,6 +29,18 @@ export const profileAPI = {
       },
       setStatus(status) {
             return instance.put('profile/status', {status}).then(resposne => resposne.data);
+      },
+      setImage(image) {
+            const formData = new FormData;
+            formData.append('image', image)
+            return instance.put('/profile/photo', formData, {
+                  headers: {
+                        'Content-Type': 'multipart/form-data'
+                  }
+            }).then(resposne => resposne.data);
+      },
+      setProfile(profile) {
+            return instance.put('profile', profile).then(resposne => resposne.data);
       }
 };
 
@@ -36,11 +48,17 @@ export const authAPI = {
       toGetLogin() {
             return instance.get('auth/me').then(response => response.data.data);
       },
-      toLogin(email, password, rememberMe = true) {
-            return instance.post('auth/login', {email, password, rememberMe }).then(response => response.data);
+      toLogin(email, password, rememberMe = true, captcha = null) {
+            return instance.post('auth/login', {email, password, rememberMe, captcha }).then(response => response.data);
       },
       toLogout() {
             return instance.delete('auth/login').then(response => response.data);
+      }
+}
+
+export const securityAPI = {
+      toGetCaptcha() {
+            return instance.get('security/get-captcha-url');
       }
 }
 

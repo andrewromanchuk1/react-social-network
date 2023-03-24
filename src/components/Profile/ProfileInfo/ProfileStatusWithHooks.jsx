@@ -20,9 +20,10 @@ const ProfileStatusWithHooks = (props) => {
    }, [props.status])
  
    return  (
-      <div>
+      <div className={ProInfoCSS.profile__status_container}>
+         <span className={ProInfoCSS.profile__about_status}>Status:</span>
          {editMode ? <input value={status} onChange={onStatusChange} onBlur={deactivateMode} autoFocus={true}></input> :
-         <p onDoubleClick={activateMode} className={ProInfoCSS.profile__about}>{props.status || 'no status'}</p>}
+         <span onDoubleClick={activateMode} className={ProInfoCSS.profile__status}>{props.status || 'no status'}</span>}
       </div>
    )
 }
